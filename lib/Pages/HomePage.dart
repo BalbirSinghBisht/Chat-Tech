@@ -15,8 +15,10 @@ class _HomeState extends State<HomePage>{
         backgroundColor: Colors.deepOrangeAccent.shade100,
       ),
       body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
         alignment: Alignment.center,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
                   onTap: () {},
@@ -28,7 +30,9 @@ class _HomeState extends State<HomePage>{
               SizedBox(height: 20.0),
               Text("You've not joined any group, tap on the 'add' icon to create"
                   " a group or search for groups by tapping on the search "
-                  "button below."),
+                  "button below.",textAlign: TextAlign.center,style: TextStyle(
+                color: Colors.grey,fontSize: 18
+              ),),
             ],
           )
       ),
