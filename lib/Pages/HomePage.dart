@@ -14,16 +14,30 @@ class _HomeState extends State<HomePage>{
         title: Text('Chat-Tech'),
         backgroundColor: Colors.deepOrangeAccent.shade100,
       ),
-      body: Align(
+      body: Container(
         alignment: Alignment.center,
-        child: Text('Welcome to my Chat-Tech App',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.black,fontWeight: FontWeight.bold,
-            fontSize: 30
-          ),
-        )
-      )
+          child: Column(
+            children: [
+              GestureDetector(
+                  onTap: () {},
+                  child: Icon(
+                      CupertinoIcons.add_circled,
+                      color: Colors.grey, size: 70.0
+                  )
+              ),
+              SizedBox(height: 20.0),
+              Text("You've not joined any group, tap on the 'add' icon to create"
+                  " a group or search for groups by tapping on the search "
+                  "button below."),
+            ],
+          )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(
+          Icons.add,
+        ),
+      ),
     );
   }
 }
