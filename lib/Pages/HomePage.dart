@@ -37,6 +37,7 @@ class _HomeState extends State<HomePage>{
         child: Icon(
           Icons.add,
         ),
+        backgroundColor: Colors.grey,
         splashColor: Colors.deepOrangeAccent.shade100,
         elevation: 0.0,
       ),
