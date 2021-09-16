@@ -123,6 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             GestureDetector(
                 child: Container(
+                  width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   margin: EdgeInsets.only(left: 20,right: 20),
                   decoration: BoxDecoration(
@@ -156,6 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           Text(
                             'CREATE ACCOUNT',
                             style: TextStyle(color: Colors.white, fontSize: 20.0,fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
                           )
                         ],
                       ),

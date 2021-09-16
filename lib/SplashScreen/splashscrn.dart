@@ -1,15 +1,36 @@
+import 'package:chattech/Pages/HomePage.dart';
 import 'package:chattech/Pages/firstPage.dart';
+import 'package:chattech/helper/helper_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
+class Splash extends StatefulWidget{
+  @override
+  _Splash createState() => _Splash();
+}
 
-class Splash extends StatelessWidget{
+class _Splash extends State<Splash>{
+  bool _isLoggedIn = false;
+  @override
+  void initState(){
+    super.initState();
+    _getUserLoggedInStatus();
+  }
+  _getUserLoggedInStatus() async{
+    await HelperFunctions.getUserLoggedIn().then((value) {
+      if(value !=null){
+       setState((){
+         _isLoggedIn = value;
+       });
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
       backgroundColor: Colors.deepOrangeAccent[100],
       seconds: 3,
-      navigateAfterSeconds: new FirstPage(),
+      navigateAfterSeconds: _isLoggedIn != null ? FirstPage() : HomePage(),
       title: new Text('Chat-Tech',textScaleFactor: 2,style: TextStyle(
         color: Colors.green[500],
       ),),
