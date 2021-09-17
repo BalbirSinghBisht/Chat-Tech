@@ -1,6 +1,6 @@
-class User{
+class Users{
   late final String uid;
-  User({
+  Users({
     required this.uid
   });
 }
