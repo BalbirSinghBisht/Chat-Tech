@@ -1,61 +1,57 @@
 import 'package:chattech/Pages/HomePage.dart';
 import 'package:chattech/Services/auth_service.dart';
-import 'package:chattech/Services/database_service.dart';
 import 'package:chattech/helper/helper_functions.dart';
 import 'package:chattech/shared/constants.dart';
 import 'package:chattech/shared/loading.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget{
+class RegisterPage extends StatefulWidget{
   late final Function toggleView;
-
-  SignIn({required this.toggleView});
+  RegisterPage({required this.toggleView});
 
   @override
-  _SignIn createState() => _SignIn();
+  _Register createState() => _Register();
 }
 
-class _SignIn extends State<SignIn>{
+class _Register extends State<RegisterPage> {
   final AuthService _auth = AuthService();
-  final _formkey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
-  String email='';
-  String password='';
-  String error='';
+  String fullName = '';
+  String email = '';
+  String password = '';
+  String error = '';
 
-  _onSignIn() async {
-    if(_formkey.currentState!.validate()){
+  _onRegister() async{
+    if(_formKey.currentState!.validate()){
       setState(() {
         _isLoading = true;
       });
-      await _auth.signInwithEmail(email, password).then((result) async{
+      await _auth.registerWithEmail(fullName ,email, password).then((result) async{
         if(result != null){
-          QuerySnapshot userInputSnapshot = await DatabaseService(uid: '').getUserData(email);
-
           await HelperFunctions.saveUserLoggedIn(true);
           await HelperFunctions.saveUserEmail(email);
-          await HelperFunctions.saveUserName(
-              userInputSnapshot.docs[0].get('FullName')
-          );
-          print("SignedIn");
-          await HelperFunctions.getUserLoggedIn().then((value){
+          await HelperFunctions.saveUserName(fullName);
+
+          print("Registered");
+          await HelperFunctions.getUserLoggedIn().then((value) {
             print("Logged In: $value");
           });
-          await HelperFunctions.getUserEmail().then((value){
+          await HelperFunctions.getUserEmail().then((value) {
             print("Email: $value");
           });
-          await HelperFunctions.getUserName().then((value){
-            print("Full Name: $value");
+          await HelperFunctions.getUserName().then((value) {
+            print("FullName: $value");
           });
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => HomePage())
+          );
         }
         else{
           setState(() {
-            error = 'Error SignIn!!!';
+            error = "Error While Registering The User!!!";
             _isLoading = false;
           });
         }
@@ -65,9 +61,9 @@ class _SignIn extends State<SignIn>{
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading? Loading(): Scaffold(
+    return _isLoading ? Loading() : Scaffold(
       body: Form(
-        key: _formkey,
+        key: _formKey,
         child: Container(
           color: Colors.black,
           child: ListView(
@@ -80,29 +76,47 @@ class _SignIn extends State<SignIn>{
                   Text("Create or Join Groups",style: TextStyle(
                     color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold
                   ),),
+
                   SizedBox(height: 30,),
-                  Text('Sign In',style: TextStyle(
+
+                  Text("Register", style: TextStyle(
                     color: Colors.white,fontSize: 25
                   ),),
+
                   SizedBox(height: 20,),
+
+                  TextFormField(
+                    style: TextStyle(color: Colors.white),
+                    decoration: textInputDecoration.copyWith(labelText: 'Full Name'),
+                    onChanged: (val){
+                      setState(() {
+                        fullName = val;
+                      });
+                    },
+                  ),
+
+                  SizedBox(height: 15,),
+
                   TextFormField(
                     style: TextStyle(color: Colors.white),
                     decoration: textInputDecoration.copyWith(labelText: 'Email'),
                     validator: (val){
-                      return RegExp(r"^[a-zA-Z0_9,a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").
-                      hasMatch(val!) ? null:"Please Enter Valid Email";
+                      return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(val!)? null : "Please Enter a valid Email";
                     },
                     onChanged: (val){
                       setState(() {
-                        email=val;
+                        email = val;
                       });
                     },
                   ),
+
                   SizedBox(height: 15,),
+
                   TextFormField(
                     style: TextStyle(color: Colors.white),
                     decoration: textInputDecoration.copyWith(labelText: 'Password'),
-                    validator: (val) => val!.length < 8 ? 'Password Not Strong Enough':null,
+                    validator: (val) => val!.length < 8 ? "Password Not Strong Enough" : null,
                     obscureText: true,
                     onChanged: (val){
                       setState(() {
@@ -110,30 +124,35 @@ class _SignIn extends State<SignIn>{
                       });
                     },
                   ),
+
                   SizedBox(height: 20,),
+
                   SizedBox(
                     width: double.infinity,
                     height: 50,
                     child: RaisedButton(
                       elevation: 0.0,
                       color: Colors.deepOrangeAccent[100],
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                      child: Text('Sign In',style: TextStyle(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      child: Text("Register",style: TextStyle(
                         color: Colors.white,fontSize: 16
                       ),),
                       onPressed: (){
-                        _onSignIn();
+                        _onRegister();
                       },
                     ),
                   ),
+
                   SizedBox(height: 10,),
+
                   Text.rich(
                     TextSpan(
-                      text: 'Don\'t have an account?',
+                      text: "Already have an account? ",
                       style: TextStyle(color: Colors.white,fontSize: 14),
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Register here',
+                          text: "Sign In",
                           style: TextStyle(
                             color: Colors.white,
                             decoration: TextDecoration.underline
@@ -145,8 +164,12 @@ class _SignIn extends State<SignIn>{
                       ]
                     )
                   ),
+
                   SizedBox(height: 10,),
-                  Text(error, style: TextStyle(color: Colors.red,fontSize: 14),)
+
+                  Text(error,style: TextStyle(
+                    color: Colors.red,fontSize: 14
+                  ),)
                 ],
               )
             ],

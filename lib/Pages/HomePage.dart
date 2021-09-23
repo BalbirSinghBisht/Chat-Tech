@@ -1,3 +1,5 @@
+import 'package:chattech/Services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +9,17 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomeState extends State<HomePage>{
+  final AuthService _auth = AuthService();
+  late User _user;
+  late String _groupName;
+  String _userName = '';
+  String _email = '';
+  late String _groups;
+
+  @override
+  void initState(){
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
