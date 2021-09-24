@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:chattech/Pages/chatPage.dart';
 import 'package:chattech/Services/database_service.dart';
 import 'package:chattech/helper/helper_functions.dart';

@@ -1,5 +1,4 @@
 import 'package:chattech/Pages/HomePage.dart';
-import 'package:chattech/Pages/firstPage.dart';
 import 'package:chattech/helper/helper_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +29,7 @@ class _Splash extends State<Splash>{
     return SplashScreen(
       backgroundColor: Colors.deepOrangeAccent[100],
       seconds: 3,
-      navigateAfterSeconds: _isLoggedIn != null ? FirstPage() : HomePage(),
+      navigateAfterSeconds: HomePage(),
       title: new Text('Chat-Tech',textScaleFactor: 2,style: TextStyle(
         color: Colors.green[500],
       ),),

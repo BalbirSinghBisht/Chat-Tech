@@ -24,14 +24,14 @@ class _ChatPage extends State<ChatPage>{
   Widget _chatMessages() {
     return StreamBuilder(
       stream: _chats,
-      builder: (context,snapshot){
+      builder: (context,AsyncSnapshot<dynamic> snapshot){
         return snapshot.hasData ? ListView.builder(
-          itemCount: (snapshot.data as QuerySnapshot).docs.length,
+          itemCount: snapshot.data.docs.length,
           itemBuilder: (context,index){
             return MessageTile(
-                message: (snapshot.data as QuerySnapshot).docs[index].get("message"),
-                sender: (snapshot.data as QuerySnapshot).docs[index].get("sender"),
-                sentByMe: widget.userName == (snapshot.data as QuerySnapshot).docs[index].get("sender"));
+                message: snapshot.data.docs[index].data['message'],
+                sender: snapshot.data.docs[index].data["sender"],
+                sentByMe: widget.userName == snapshot.data.docs[index].data["sender"]);
             },
         ) :
         Container();
