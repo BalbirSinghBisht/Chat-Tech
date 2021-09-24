@@ -130,7 +130,7 @@ class _HomeState extends State<HomePage>{
       onPressed: () async{
         if(_groupName != null){
           await HelperFunctions.getUserName().then((val) {
-            DatabaseService(uid:  _user.uid).createGroup(val!, _groupName);
+            DatabaseService(uid: _user.uid).createGroup(val!, _groupName);
           });
           Navigator.of(context).pop();
         }

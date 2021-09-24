@@ -69,7 +69,7 @@ class _SignIn extends State<SignIn>{
       body: Form(
         key: _formkey,
         child: Container(
-          color: Colors.black,
+          color: Colors.deepOrangeAccent[100],
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: 30,vertical: 80),
             children: <Widget>[
@@ -78,16 +78,17 @@ class _SignIn extends State<SignIn>{
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text("Create or Join Groups",style: TextStyle(
-                    color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold
-                  ),),
+                    color: Colors.black54,fontSize: 50,fontWeight: FontWeight.bold
+                  ),textAlign: TextAlign.center,),
                   SizedBox(height: 30,),
                   Text('Sign In',style: TextStyle(
-                    color: Colors.white,fontSize: 25
+                    color: Colors.black54,fontSize: 25
                   ),),
                   SizedBox(height: 20,),
                   TextFormField(
-                    style: TextStyle(color: Colors.white),
-                    decoration: textInputDecoration.copyWith(labelText: 'Email'),
+                    style: TextStyle(color: Colors.black),
+                    decoration: textInputDecoration.copyWith(labelText: 'Email',
+                        labelStyle: TextStyle(color: Colors.black54)),
                     validator: (val){
                       return RegExp(r"^[a-zA-Z0_9,a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").
                       hasMatch(val!) ? null:"Please Enter Valid Email";
@@ -100,8 +101,9 @@ class _SignIn extends State<SignIn>{
                   ),
                   SizedBox(height: 15,),
                   TextFormField(
-                    style: TextStyle(color: Colors.white),
-                    decoration: textInputDecoration.copyWith(labelText: 'Password'),
+                    style: TextStyle(color: Colors.black),
+                    decoration: textInputDecoration.copyWith(labelText: 'Password',
+                        labelStyle: TextStyle(color: Colors.black54)),
                     validator: (val) => val!.length < 8 ? 'Password Not Strong Enough':null,
                     obscureText: true,
                     onChanged: (val){
@@ -116,7 +118,7 @@ class _SignIn extends State<SignIn>{
                     height: 50,
                     child: RaisedButton(
                       elevation: 0.0,
-                      color: Colors.deepOrangeAccent[100],
+                      color: Colors.blue[300],
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       child: Text('Sign In',style: TextStyle(
                         color: Colors.white,fontSize: 16
@@ -129,13 +131,14 @@ class _SignIn extends State<SignIn>{
                   SizedBox(height: 10,),
                   Text.rich(
                     TextSpan(
-                      text: 'Don\'t have an account?',
-                      style: TextStyle(color: Colors.white,fontSize: 14),
+                      text: 'Don\'t have an account? ',
+                      style: TextStyle(color: Colors.black,fontSize: 18),
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Register here',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
+                            fontSize: 18,
                             decoration: TextDecoration.underline
                           ),
                           recognizer: TapGestureRecognizer()..onTap = (){

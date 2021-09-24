@@ -65,7 +65,7 @@ class _Register extends State<RegisterPage> {
       body: Form(
         key: _formKey,
         child: Container(
-          color: Colors.black,
+          color: Colors.deepOrangeAccent[100],
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: 30,vertical: 80),
             children: <Widget>[
@@ -74,20 +74,21 @@ class _Register extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text("Create or Join Groups",style: TextStyle(
-                    color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold
-                  ),),
+                    color: Colors.black54,fontSize: 50,fontWeight: FontWeight.bold
+                  ),textAlign: TextAlign.center,),
 
                   SizedBox(height: 30,),
 
                   Text("Register", style: TextStyle(
-                    color: Colors.white,fontSize: 25
+                    color: Colors.black54,fontSize: 25
                   ),),
 
                   SizedBox(height: 20,),
 
                   TextFormField(
-                    style: TextStyle(color: Colors.white),
-                    decoration: textInputDecoration.copyWith(labelText: 'Full Name'),
+                    style: TextStyle(color: Colors.black54),
+                    decoration: textInputDecoration.copyWith(labelText: 'Full Name',
+                        labelStyle: TextStyle(color: Colors.black54)),
                     onChanged: (val){
                       setState(() {
                         fullName = val;
@@ -98,8 +99,9 @@ class _Register extends State<RegisterPage> {
                   SizedBox(height: 15,),
 
                   TextFormField(
-                    style: TextStyle(color: Colors.white),
-                    decoration: textInputDecoration.copyWith(labelText: 'Email'),
+                    style: TextStyle(color: Colors.black54),
+                    decoration: textInputDecoration.copyWith(labelText: 'Email',
+                        labelStyle: TextStyle(color: Colors.black54)),
                     validator: (val){
                       return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                           .hasMatch(val!)? null : "Please Enter a valid Email";
@@ -114,8 +116,9 @@ class _Register extends State<RegisterPage> {
                   SizedBox(height: 15,),
 
                   TextFormField(
-                    style: TextStyle(color: Colors.white),
-                    decoration: textInputDecoration.copyWith(labelText: 'Password'),
+                    style: TextStyle(color: Colors.black54),
+                    decoration: textInputDecoration.copyWith(labelText: 'Password',
+                        labelStyle: TextStyle(color: Colors.black54)),
                     validator: (val) => val!.length < 8 ? "Password Not Strong Enough" : null,
                     obscureText: true,
                     onChanged: (val){
@@ -132,7 +135,7 @@ class _Register extends State<RegisterPage> {
                     height: 50,
                     child: RaisedButton(
                       elevation: 0.0,
-                      color: Colors.deepOrangeAccent[100],
+                      color: Colors.blue[300],
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
                       child: Text("Register",style: TextStyle(
@@ -149,12 +152,13 @@ class _Register extends State<RegisterPage> {
                   Text.rich(
                     TextSpan(
                       text: "Already have an account? ",
-                      style: TextStyle(color: Colors.white,fontSize: 14),
+                      style: TextStyle(color: Colors.black,fontSize: 18),
                       children: <TextSpan>[
                         TextSpan(
                           text: "Sign In",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
+                            fontSize: 18,
                             decoration: TextDecoration.underline
                           ),
                           recognizer: TapGestureRecognizer()..onTap = (){
