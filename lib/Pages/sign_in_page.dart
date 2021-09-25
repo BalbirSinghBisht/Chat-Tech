@@ -35,7 +35,6 @@ class _SignIn extends State<SignIn>{
       await _auth.signInwithEmail(email, password).then((result) async{
         if(result != null){
           QuerySnapshot userInputSnapshot = await DatabaseService(uid: '').getUserData(email);
-
           await HelperFunctions.saveUserLoggedIn(true);
           await HelperFunctions.saveUserEmail(email);
           await HelperFunctions.saveUserName(
@@ -55,7 +54,7 @@ class _SignIn extends State<SignIn>{
         }
         else{
           setState(() {
-            error = 'Error SignIn!!!';
+            error = 'Error Sign In !!!';
             _isLoading = false;
           });
         }
@@ -78,7 +77,7 @@ class _SignIn extends State<SignIn>{
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text("Create or Join Groups",style: TextStyle(
-                    color: Colors.black54,fontSize: 50,fontWeight: FontWeight.bold
+                    color: Colors.white,fontSize: 50,fontWeight: FontWeight.bold
                   ),textAlign: TextAlign.center,),
                   SizedBox(height: 30,),
                   Text('Sign In',style: TextStyle(
@@ -88,7 +87,9 @@ class _SignIn extends State<SignIn>{
                   TextFormField(
                     style: TextStyle(color: Colors.black),
                     decoration: textInputDecoration.copyWith(labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.black54)),
+                      labelStyle: TextStyle(color: Colors.black54),
+                      prefixIcon: Icon(Icons.email),
+                    ),
                     validator: (val){
                       return RegExp(r"^[a-zA-Z0_9,a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").
                       hasMatch(val!) ? null:"Please Enter Valid Email";
@@ -103,7 +104,9 @@ class _SignIn extends State<SignIn>{
                   TextFormField(
                     style: TextStyle(color: Colors.black),
                     decoration: textInputDecoration.copyWith(labelText: 'Password',
-                        labelStyle: TextStyle(color: Colors.black54)),
+                      labelStyle: TextStyle(color: Colors.black54),
+                      prefixIcon: Icon(Icons.lock),
+                    ),
                     validator: (val) => val!.length < 8 ? 'Password Not Strong Enough':null,
                     obscureText: true,
                     onChanged: (val){
@@ -128,7 +131,7 @@ class _SignIn extends State<SignIn>{
                       },
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 20,),
                   Text.rich(
                     TextSpan(
                       text: 'Don\'t have an account? ',
@@ -149,7 +152,7 @@ class _SignIn extends State<SignIn>{
                     )
                   ),
                   SizedBox(height: 10,),
-                  Text(error, style: TextStyle(color: Colors.red,fontSize: 14),)
+                  Text(error, style: TextStyle(color: Colors.red,fontSize: 18),)
                 ],
               )
             ],

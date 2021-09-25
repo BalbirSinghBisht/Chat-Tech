@@ -1,6 +1,4 @@
-import 'package:chattech/Pages/HomePage.dart';
-import 'package:chattech/Pages/authenticatePage.dart';
-import 'package:chattech/helper/helper_functions.dart';
+import 'package:chattech/SplashScreen/splashscrn.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +15,7 @@ class MyApp extends StatefulWidget{
 }
 
 class _MyApp extends State<MyApp> {
-  bool _isLoggedIn = false;
+  /*bool _isLoggedIn = false;
   @override
   void initState(){
     super.initState();
@@ -31,7 +29,7 @@ class _MyApp extends State<MyApp> {
         });
       }
     });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,7 @@ class _MyApp extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      home: _isLoggedIn ? HomePage() : AuthenticatePage(),
+      home: Splash(),
     );
   }
 }

@@ -29,9 +29,9 @@ class _ChatPage extends State<ChatPage>{
           itemCount: snapshot.data.docs.length,
           itemBuilder: (context,index){
             return MessageTile(
-                message: snapshot.data.docs[index].data['message'],
-                sender: snapshot.data.docs[index].data["sender"],
-                sentByMe: widget.userName == snapshot.data.docs[index].data["sender"]);
+                message: snapshot.data.docs[index].data()['message'],
+                sender: snapshot.data.docs[index].data()["sender"],
+                sentByMe: widget.userName == snapshot.data.docs[index].data()["sender"]);
             },
         ) :
         Container();
@@ -67,7 +67,7 @@ class _ChatPage extends State<ChatPage>{
       appBar: AppBar(
         title: Text(widget.groupName,style: TextStyle(color: Colors.white),),
         centerTitle: true,
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.deepOrangeAccent[100],
         elevation: 0.0,
       ),
       body: Container(
@@ -78,24 +78,31 @@ class _ChatPage extends State<ChatPage>{
               alignment: Alignment.bottomCenter,
               width: MediaQuery.of(context).size.width,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
-                color: Colors.grey[700],
+                  padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    shape: BoxShape.rectangle,
+                    color: Colors.grey
+                  ),
                 child: Row(
                   children: <Widget>[
-                    Expanded(child: TextField(
-                      controller: messageEditingController,
-                      style: TextStyle(
-                        color: Colors.white
-                      ),
-                      decoration: InputDecoration(
-                        hintText: "Send a message...",
-                        hintStyle: TextStyle(
-                          color: Colors.white38,
-                          fontSize: 17
-                        ),
-                        border: InputBorder.none
-                      ),
-                    )),
+                    Expanded(
+                        child: TextField(
+                          controller: messageEditingController,
+                          style: TextStyle(
+                            color: Colors.white
+                          ),
+                          decoration: InputDecoration(
+                            hintText: "Send a message...",
+                            hintStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17
+                            ),
+                            border: InputBorder.none
+                          ),
+                        )
+                    ),
                     SizedBox(width: 13.0,),
                     GestureDetector(
                       onTap: (){
@@ -111,7 +118,7 @@ class _ChatPage extends State<ChatPage>{
                         child: Center(
                           child: Icon(
                             Icons.send,
-                            color: Colors.deepOrangeAccent[100],
+                            color: Colors.white,
                           ),
                         ),
                       ),

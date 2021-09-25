@@ -2,8 +2,8 @@
     package="com.example.chattech">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="chattech"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Chat-Tech"
+        android:icon="@mipmap/logo1">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

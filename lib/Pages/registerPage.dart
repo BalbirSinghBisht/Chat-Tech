@@ -51,7 +51,7 @@ class _Register extends State<RegisterPage> {
         }
         else{
           setState(() {
-            error = "Error While Registering The User!!!";
+            error = "Error While Registering The User !!!";
             _isLoading = false;
           });
         }
@@ -74,34 +74,35 @@ class _Register extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text("Create or Join Groups",style: TextStyle(
-                    color: Colors.black54,fontSize: 50,fontWeight: FontWeight.bold
+                    color: Colors.white,fontSize: 50,fontWeight: FontWeight.bold
                   ),textAlign: TextAlign.center,),
-
                   SizedBox(height: 30,),
 
                   Text("Register", style: TextStyle(
                     color: Colors.black54,fontSize: 25
                   ),),
-
                   SizedBox(height: 20,),
 
                   TextFormField(
                     style: TextStyle(color: Colors.black54),
                     decoration: textInputDecoration.copyWith(labelText: 'Full Name',
-                        labelStyle: TextStyle(color: Colors.black54)),
+                      labelStyle: TextStyle(color: Colors.black54),
+                      prefixIcon: Icon(Icons.person),
+                    ),
                     onChanged: (val){
                       setState(() {
                         fullName = val;
                       });
                     },
                   ),
-
                   SizedBox(height: 15,),
 
                   TextFormField(
                     style: TextStyle(color: Colors.black54),
                     decoration: textInputDecoration.copyWith(labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.black54)),
+                      labelStyle: TextStyle(color: Colors.black54),
+                      prefixIcon: Icon(Icons.email),
+                    ),
                     validator: (val){
                       return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                           .hasMatch(val!)? null : "Please Enter a valid Email";
@@ -112,13 +113,14 @@ class _Register extends State<RegisterPage> {
                       });
                     },
                   ),
-
                   SizedBox(height: 15,),
 
                   TextFormField(
                     style: TextStyle(color: Colors.black54),
                     decoration: textInputDecoration.copyWith(labelText: 'Password',
-                        labelStyle: TextStyle(color: Colors.black54)),
+                      labelStyle: TextStyle(color: Colors.black54),
+                      prefixIcon: Icon(Icons.lock),
+                    ),
                     validator: (val) => val!.length < 8 ? "Password Not Strong Enough" : null,
                     obscureText: true,
                     onChanged: (val){
@@ -127,7 +129,6 @@ class _Register extends State<RegisterPage> {
                       });
                     },
                   ),
-
                   SizedBox(height: 20,),
 
                   SizedBox(
@@ -139,15 +140,13 @@ class _Register extends State<RegisterPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
                       child: Text("Register",style: TextStyle(
-                        color: Colors.white,fontSize: 16
-                      ),),
+                        color: Colors.white,fontSize: 16,)),
                       onPressed: (){
                         _onRegister();
                       },
                     ),
                   ),
-
-                  SizedBox(height: 10,),
+                  SizedBox(height: 20,),
 
                   Text.rich(
                     TextSpan(
@@ -172,7 +171,7 @@ class _Register extends State<RegisterPage> {
                   SizedBox(height: 10,),
 
                   Text(error,style: TextStyle(
-                    color: Colors.red,fontSize: 14
+                    color: Colors.red,fontSize: 18
                   ),)
                 ],
               )

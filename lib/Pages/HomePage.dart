@@ -31,6 +31,7 @@ class _HomeState extends State<HomePage>{
   Widget noGroupWidget(){
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 25),
+      color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,7 +48,7 @@ class _HomeState extends State<HomePage>{
           Text("You've not joined any group, tap on the 'add' icon to create"
               " a group or search for groups by tapping on the search "
               "button below.",textAlign: TextAlign.center,style: TextStyle(
-              color: Colors.grey,fontSize: 18
+              color: Colors.black54,fontSize: 18
           ),)
         ],
       ),
@@ -67,7 +68,7 @@ class _HomeState extends State<HomePage>{
                 itemBuilder: (context,index){
                   int reqIndex = snapshot.data['groups'].length -index -1;
                   return GroupTile(
-                      userName: snapshot.data['fullNmae'],
+                      userName: snapshot.data['fullName'],
                       groupId: _destructureId(snapshot.data['groups'][reqIndex]),
                       groupName: _destructureName(snapshot.data['groups'][reqIndex])
                   );
@@ -120,13 +121,19 @@ class _HomeState extends State<HomePage>{
 
   void _popupDialog(BuildContext context){
     Widget cancelButton = FlatButton(
-      child: Text("Cancel"),
+      child: Text("Cancel",style: TextStyle(
+          color: Colors.white,
+          fontSize: 18
+      )),
       onPressed: (){
         Navigator.of(context).pop();
       },
     );
     Widget createButton = FlatButton(
-      child: Text("Create"),
+      child: Text("Create",style: TextStyle(
+        color: Colors.white,
+        fontSize: 18
+      )),
       onPressed: () async{
         if(_groupName != null){
           await HelperFunctions.getUserName().then((val) {
@@ -137,8 +144,21 @@ class _HomeState extends State<HomePage>{
       },
     );
     AlertDialog alert = AlertDialog(
-      title: Text("Create a Group"),
-      content: TextField(
+      backgroundColor: Colors.deepOrangeAccent[100],
+      title: Text("Create a Group",style: TextStyle(
+        color: Colors.white,
+        fontSize: 25
+      )),
+      content: TextFormField(
+        decoration: InputDecoration(
+          labelStyle: TextStyle(color: Colors.black),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white,width: 2.0)
+          ),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Color(0xFFFF0889B6),width: 2.0)
+          ),
+        ),
         onChanged: (val){
           _groupName = val;
         },
@@ -169,7 +189,7 @@ class _HomeState extends State<HomePage>{
         title: Text('Groups', style: TextStyle(
             color: Colors.white, fontSize: 27.0, fontWeight: FontWeight.bold
         )),
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.deepOrangeAccent[100],
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
@@ -185,7 +205,7 @@ class _HomeState extends State<HomePage>{
         child: ListView(
           padding: EdgeInsets.symmetric(vertical: 50),
           children: <Widget>[
-            Icon(Icons.account_circle,size: 150,color: Colors.grey[700]),
+            Icon(Icons.account_circle,size: 150,color: Colors.grey),
             SizedBox(height: 15,),
 
             Text(_userName,textAlign: TextAlign.center,style: TextStyle(

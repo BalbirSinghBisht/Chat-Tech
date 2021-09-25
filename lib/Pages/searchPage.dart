@@ -149,11 +149,18 @@ class _Search extends State<SearchPage>{
         ),),
       ),
       body: Container(
+        color: Colors.deepOrangeAccent[100],
         child: Column(
           children: [
+            Divider(height: 10,thickness: 2),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
-              color: Colors.grey[700],
+              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+              margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                shape: BoxShape.rectangle,
+                color: Colors.grey
+              ),
               child: Row(
                 children: [
                   Expanded(
@@ -165,7 +172,7 @@ class _Search extends State<SearchPage>{
                         decoration: InputDecoration(
                           hintText: "Search Groups...",
                           hintStyle: TextStyle(
-                            color: Colors.white38,
+                            color: Colors.white,
                             fontSize: 16
                           ),
                           border: InputBorder.none
@@ -180,10 +187,10 @@ class _Search extends State<SearchPage>{
                       height: 40,
                       width: 40,
                       decoration: BoxDecoration(
-                        color: Colors.deepOrangeAccent[100],
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(40)
                       ),
-                      child: Icon(Icons.search,color: Colors.white,),
+                      child: Icon(Icons.search,color: Colors.black,),
                     ),
                   )
                 ],

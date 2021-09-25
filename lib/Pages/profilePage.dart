@@ -18,14 +18,14 @@ class ProfilePage extends StatelessWidget{
         title: Text('Profile',style: TextStyle(
           color: Colors.white,fontSize: 27, fontWeight: FontWeight.bold
         ),),
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.deepOrangeAccent[100],
         elevation: 0.0,
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.symmetric(vertical: 50),
           children: <Widget>[
-            Icon(Icons.account_circle,size: 150,color: Colors.grey[700],),
+            Icon(Icons.account_circle,size: 150,color: Colors.grey,),
             SizedBox(height: 15,),
 
             Text(userName,textAlign: TextAlign.center,style: TextStyle(
@@ -68,27 +68,28 @@ class ProfilePage extends StatelessWidget{
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 40,vertical: 170),
+        padding: EdgeInsets.symmetric(horizontal: 20,vertical: 30),
         child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Icon(Icons.account_circle,size: 200,color: Colors.grey[700],),
+              Icon(Icons.account_circle,size: 200,color: Colors.grey,),
               SizedBox(height: 15,),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('Full Name',style: TextStyle(fontSize: 17),),
+                  Text('Full Name :',style: TextStyle(fontSize: 17),),
                   Text(userName,style: TextStyle(fontSize: 17),)
                 ],
               ),
-              Divider(height: 20,),
+
+              Divider(height: 20,color: Colors.black,),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('Email', style: TextStyle(fontSize: 17),),
+                  Text('Email :', style: TextStyle(fontSize: 17),),
                   Text(email,style: TextStyle(fontSize: 17),)
                 ],
               )
