@@ -13,7 +13,7 @@ class SearchPage extends StatefulWidget{
 
 class _Search extends State<SearchPage>{
   TextEditingController searchEditingController = new TextEditingController();
-  late QuerySnapshot searchResultSnapshot;
+  QuerySnapshot<Map<String,dynamic>>? searchResultSnapshot;
   bool isLoading = false;
   bool hasUserSearched = false;
   bool _isJoined = false;
@@ -39,8 +39,9 @@ class _Search extends State<SearchPage>{
       setState(() {
         isLoading = true;
       });
-      await DatabaseService(uid: '').searchByName(searchEditingController.text).then((snapshot){
+      await DatabaseService().searchByName(searchEditingController.text).then((snapshot){
         searchResultSnapshot = snapshot;
+        print("$searchResultSnapshot");
         setState(() {
           isLoading = false;
           hasUserSearched = true;
@@ -49,11 +50,11 @@ class _Search extends State<SearchPage>{
     }
   }
   void _showScaffold(String message){
-    _scaffoldKey.currentState!.showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.deepOrangeAccent[100],
-        duration: Duration(milliseconds: 1500),
-        content: Text(message, textAlign: TextAlign.center,style: TextStyle(fontSize: 17),),
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.deepOrangeAccent[100],
+          duration: Duration(milliseconds: 1500),
+          content: Text(message, textAlign: TextAlign.center,style: TextStyle(fontSize: 17),),
       )
     );
   }
@@ -66,13 +67,13 @@ class _Search extends State<SearchPage>{
   Widget groupList(){
     return hasUserSearched ? ListView.builder(
       shrinkWrap: true,
-      itemCount: searchResultSnapshot.docs.length,
+      itemCount: searchResultSnapshot!.docs.length,
       itemBuilder: (context,index){
         return groupTile(
           _userName,
-          searchResultSnapshot.docs[index].get("groupId"),
-          searchResultSnapshot.docs[index].get("groupName"),
-          searchResultSnapshot.docs[index].get("admin"),
+          searchResultSnapshot!.docs[index].data()["groupId"],
+          searchResultSnapshot!.docs[index].data()["groupName"],
+          searchResultSnapshot!.docs[index].data()["admin"],
         );
       },
     ):Container();

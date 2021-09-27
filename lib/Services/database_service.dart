@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseService{
-  late final String uid;
+  final String? uid;
   DatabaseService({
-    required this.uid
+    this.uid
 });
   final CollectionReference userCollection = FirebaseFirestore.instance.collection('users');
   final CollectionReference groupCollection = FirebaseFirestore.instance.collection('groups');
@@ -14,14 +14,14 @@ class DatabaseService{
       'email': email,
       'password': password,
       'groups': [],
-      'profilepic': ''
+      'profilePic': ''
     });
   }
 
   Future createGroup(String username,String groupName) async{
     DocumentReference groupDocRef = await groupCollection.add({
-      'groupname': groupName,
-      'groupicon': '',
+      'groupName': groupName,
+      'groupIcon': '',
       'admin': username,
       'members': [],
       'groupId': '',
@@ -29,30 +29,31 @@ class DatabaseService{
       'recentMsgSender': ''
     });
     await groupDocRef.update({
-      'members': FieldValue.arrayUnion([uid + '_' +username]),
+      'members': FieldValue.arrayUnion([uid! + '_' +username]),
       'groupId': groupDocRef.id
     });
 
-    DocumentReference userDocRef = await userCollection.doc(uid);
+    DocumentReference userDocRef = userCollection.doc(uid);
     return await userDocRef.update({
-      'groups': FieldValue.arrayUnion([groupDocRef.id+ '_' +groupName])
+      'groups': FieldValue.arrayUnion([groupDocRef.id + '_' +groupName])
     });
   }
 
   Future togglingGroupJoin(String groupId, String groupName, String userName) async {
     DocumentReference userDocRef = userCollection.doc(uid);
-    DocumentSnapshot userDocSnapshot = await userDocRef.get();
+    DocumentSnapshot<Map<String,dynamic>>? userDocSnapshot =
+    (await userDocRef.get()) as DocumentSnapshot<Map<String, dynamic>>?;
 
     DocumentReference groupDocRef = groupCollection.doc(groupId);
 
-    List<dynamic> groups = await userDocSnapshot.get('groups');
+    List<dynamic> groups = await userDocSnapshot!.data()!['groups'];
 
     if (groups.contains(groupId + '_' + groupName)) {
       await userDocRef.update({
         'groups': FieldValue.arrayRemove([groupId + '_' + groupName])
       });
       await groupDocRef.update({
-        'members': FieldValue.arrayRemove([uid + '_' + userName])
+        'members': FieldValue.arrayRemove([uid! + '_' + userName])
       });
     }
     else {
@@ -60,15 +61,16 @@ class DatabaseService{
         'groups': FieldValue.arrayUnion([groupId + '_' + groupName])
       });
       await groupDocRef.update({
-        'members': FieldValue.arrayUnion([uid + '_' + userName])
+        'members': FieldValue.arrayUnion([uid! + '_' + userName])
       });
     }
   }
   Future<bool> isUserJoined(String groupId, String groupName, String userName) async{
-    DocumentReference userDocRef =await userCollection.doc(uid);
-    DocumentSnapshot userDocSnapshot = await userDocRef.get();
+    DocumentReference userDocRef = userCollection.doc(uid);
+    DocumentSnapshot<Map<String,dynamic>>? userDocSnapshot;
+    userDocSnapshot= (await userDocRef.get()) as DocumentSnapshot<Map<String, dynamic>>?;
 
-    List<dynamic> groups = await userDocSnapshot.get('groups');
+    List<dynamic> groups = await userDocSnapshot!.data()!['groups'];
 
     if(groups.contains(groupId+ '_' +groupName)){
       return true;
@@ -78,8 +80,9 @@ class DatabaseService{
     }
   }
   Future getUserData(String email) async{
-    QuerySnapshot snapshot = await userCollection.where('email', isEqualTo: email).get();
-    print(snapshot.docs[0].data());
+    QuerySnapshot<Map<String,dynamic>>? snapshot;
+    snapshot = (await userCollection.where('email', isEqualTo: email).get()) as QuerySnapshot<Map<String, dynamic>>?;
+    print(snapshot!.docs[0].data());
     return snapshot;
   }
   getUserGroups() async{
@@ -98,7 +101,7 @@ class DatabaseService{
         .collection('messages').orderBy('time').snapshots();
   }
   searchByName(String groupName){
-    return FirebaseFirestore.instance.collection('groups').
+    return FirebaseFirestore.instance.collection("groups").
     where('groupName', isEqualTo: groupName).get();
   }
 }

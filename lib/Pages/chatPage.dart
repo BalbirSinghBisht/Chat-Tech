@@ -18,9 +18,9 @@ class ChatPage extends StatefulWidget{
 }
 
 class _ChatPage extends State<ChatPage>{
-  late Stream<QuerySnapshot> _chats;
+  Stream<QuerySnapshot>? _chats;
   TextEditingController messageEditingController = new TextEditingController();
-  @override
+
   Widget _chatMessages() {
     return StreamBuilder(
       stream: _chats,
@@ -45,7 +45,7 @@ class _ChatPage extends State<ChatPage>{
         "sender": widget.userName,
         'time': DateTime.now().millisecondsSinceEpoch
       };
-      DatabaseService(uid: '').sendMsg(widget.groupId,chatMessageMap);
+      DatabaseService().sendMsg(widget.groupId,chatMessageMap);
 
       setState(() {
         messageEditingController.text = "";
@@ -55,7 +55,7 @@ class _ChatPage extends State<ChatPage>{
   @override
   void initState(){
     super.initState();
-    DatabaseService(uid: '').getChats(widget.groupId).then((val){
+    DatabaseService().getChats(widget.groupId).then((val){
       setState(() {
         _chats = val;
       });

@@ -20,7 +20,7 @@ class _HomeState extends State<HomePage>{
   late String _groupName;
   String _userName = '';
   String _email = '';
-  late Stream _groups;
+  Stream<dynamic>? _groups;
 
   @override
   void initState(){
@@ -58,7 +58,7 @@ class _HomeState extends State<HomePage>{
   Widget groupsList(){
     return StreamBuilder(
       stream: _groups,
-      builder: (context,AsyncSnapshot<dynamic> snapshot){
+      builder: (context,AsyncSnapshot snapshot){
         if(snapshot.hasData){
           if(snapshot.data != null){
             if(snapshot.data['groups'].length !=0){
@@ -69,8 +69,8 @@ class _HomeState extends State<HomePage>{
                   int reqIndex = snapshot.data['groups'].length -index -1;
                   return GroupTile(
                       userName: snapshot.data['fullName'],
-                      groupId: _destructureId(snapshot.data['groups'][reqIndex]),
-                      groupName: _destructureName(snapshot.data['groups'][reqIndex])
+                      groupId: destructureId(snapshot.data['groups'][reqIndex]),
+                      groupName: destructureName(snapshot.data['groups'][reqIndex])
                   );
                 },
               );
@@ -111,16 +111,16 @@ class _HomeState extends State<HomePage>{
     });
   }
 
-  String _destructureId(String res){
+  String destructureId(String res){
     return res.substring(0,res.indexOf('_'));
   }
 
-  String _destructureName(String res){
+  String destructureName(String res){
     return res.substring(res.indexOf('_')+1);
   }
 
   void _popupDialog(BuildContext context){
-    Widget cancelButton = FlatButton(
+    Widget cancelButton = TextButton(
       child: Text("Cancel",style: TextStyle(
           color: Colors.white,
           fontSize: 18
@@ -129,12 +129,13 @@ class _HomeState extends State<HomePage>{
         Navigator.of(context).pop();
       },
     );
-    Widget createButton = FlatButton(
+    Widget createButton = TextButton(
       child: Text("Create",style: TextStyle(
         color: Colors.white,
         fontSize: 18
       )),
       onPressed: () async{
+        // ignore: unnecessary_null_comparison
         if(_groupName != null){
           await HelperFunctions.getUserName().then((val) {
             DatabaseService(uid: _user.uid).createGroup(val!, _groupName);

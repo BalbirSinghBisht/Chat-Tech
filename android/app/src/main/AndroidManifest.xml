@@ -1,9 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chattech">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
    <application
         android:label="Chat-Tech"
-        android:icon="@mipmap/logo1">
+        android:icon="@mipmap/logo1"
+        android:name="io.flutter.app.FlutterApplication"
+        android:usesCleartextTraffic="true"
+       >
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -77,20 +77,22 @@ class ProfilePage extends StatelessWidget{
               SizedBox(height: 15,),
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('Full Name :',style: TextStyle(fontSize: 17),),
-                  Text(userName,style: TextStyle(fontSize: 17),)
+                  Text('Full Name : ',style: TextStyle(fontSize: 17),),
+                  Text(userName,style: TextStyle(fontSize: 17),
+                    textAlign: TextAlign.center,)
                 ],
               ),
 
               Divider(height: 20,color: Colors.black,),
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('Email :', style: TextStyle(fontSize: 17),),
-                  Text(email,style: TextStyle(fontSize: 17),)
+                  Text('Email : ', style: TextStyle(fontSize: 17),),
+                  Text(email,style: TextStyle(fontSize: 17),
+                    textAlign: TextAlign.center,)
                 ],
               )
             ],

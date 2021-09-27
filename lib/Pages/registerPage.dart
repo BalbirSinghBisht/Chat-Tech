@@ -134,11 +134,13 @@ class _Register extends State<RegisterPage> {
                   SizedBox(
                     width: double.infinity,
                     height: 50,
-                    child: RaisedButton(
-                      elevation: 0.0,
-                      color: Colors.blue[300],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        primary: Colors.blue[300]
+                      ),
                       child: Text("Register",style: TextStyle(
                         color: Colors.white,fontSize: 16,)),
                       onPressed: (){

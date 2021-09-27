@@ -34,11 +34,11 @@ class _SignIn extends State<SignIn>{
       });
       await _auth.signInwithEmail(email, password).then((result) async{
         if(result != null){
-          QuerySnapshot userInputSnapshot = await DatabaseService(uid: '').getUserData(email);
+          QuerySnapshot<Map<String,dynamic>>? userInfoSnapshot = await DatabaseService().getUserData(email);
           await HelperFunctions.saveUserLoggedIn(true);
           await HelperFunctions.saveUserEmail(email);
           await HelperFunctions.saveUserName(
-              userInputSnapshot.docs[0].get('FullName')
+              userInfoSnapshot!.docs[0].data()['FullName']
           );
           print("SignedIn");
           await HelperFunctions.getUserLoggedIn().then((value){
@@ -119,10 +119,13 @@ class _SignIn extends State<SignIn>{
                   SizedBox(
                     width: double.infinity,
                     height: 50,
-                    child: RaisedButton(
-                      elevation: 0.0,
-                      color: Colors.blue[300],
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        primary: Colors.blue[300]
+                      ),
                       child: Text('Sign In',style: TextStyle(
                         color: Colors.white,fontSize: 16
                       ),),

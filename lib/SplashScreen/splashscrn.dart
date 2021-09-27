@@ -14,7 +14,9 @@ class _Splash extends State<Splash>{
   @override
   void initState(){
     super.initState();
-    _getUserLoggedInStatus();
+    _getUserLoggedInStatus().whenComplete((){
+      setState(() {});
+    });
   }
   _getUserLoggedInStatus() async{
     await HelperFunctions.getUserLoggedIn().then((value) {

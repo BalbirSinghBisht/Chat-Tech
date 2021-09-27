@@ -7,11 +7,16 @@ class Loading extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       color: Colors.deepOrangeAccent[100],
-      child: Center(
-        child: SpinKitRing(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children:[
+          Image.asset("assets/logo1.png"),
+          SpinKitRing(
           color: Colors.blue.shade300,
           size: 50.0,
         ),
+      ]
       ),
     );
   }
