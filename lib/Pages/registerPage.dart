@@ -7,7 +7,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget{
-  late final Function toggleView;
+  final Function toggleView;
   RegisterPage({required this.toggleView});
 
   @override

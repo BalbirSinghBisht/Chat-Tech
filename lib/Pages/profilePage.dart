@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget{
-  late final String userName;
-  late final String email;
+  final String userName;
+  final String email;
   final AuthService _auth = AuthService();
 
   ProfilePage({required this.userName, required this.email});

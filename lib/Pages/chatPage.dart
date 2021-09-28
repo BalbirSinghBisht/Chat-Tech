@@ -33,11 +33,11 @@ class _ChatPage extends State<ChatPage>{
                 sender: snapshot.data.docs[index].data()["sender"],
                 sentByMe: widget.userName == snapshot.data.docs[index].data()["sender"]);
             },
-        ) :
-        Container();
+        ) : Container();
       },
     );
   }
+
   _sendMessage(){
     if(messageEditingController.text.isNotEmpty){
       Map<String, dynamic> chatMessageMap = {
@@ -46,12 +46,12 @@ class _ChatPage extends State<ChatPage>{
         'time': DateTime.now().millisecondsSinceEpoch
       };
       DatabaseService().sendMsg(widget.groupId,chatMessageMap);
-
       setState(() {
         messageEditingController.text = "";
       });
     }
   }
+
   @override
   void initState(){
     super.initState();
@@ -61,6 +61,7 @@ class _ChatPage extends State<ChatPage>{
       });
     });
   }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(

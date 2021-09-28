@@ -58,7 +58,7 @@ class _HomeState extends State<HomePage>{
   Widget groupsList(){
     return StreamBuilder(
       stream: _groups,
-      builder: (context,AsyncSnapshot snapshot){
+      builder: (context,AsyncSnapshot<dynamic> snapshot){
         if(snapshot.hasData){
           if(snapshot.data != null){
             if(snapshot.data['groups'].length !=0){
@@ -135,8 +135,7 @@ class _HomeState extends State<HomePage>{
         fontSize: 18
       )),
       onPressed: () async{
-        // ignore: unnecessary_null_comparison
-        if(_groupName != null){
+        if(_groupName != null){ // ignore: unnecessary_null_comparison
           await HelperFunctions.getUserName().then((val) {
             DatabaseService(uid: _user.uid).createGroup(val!, _groupName);
           });
@@ -197,7 +196,8 @@ class _HomeState extends State<HomePage>{
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               icon: Icon(Icons.search, color: Colors.white, size: 25.0),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchPage()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => SearchPage()));
               }
           )
         ],

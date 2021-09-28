@@ -10,7 +10,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget{
-  late final Function toggleView;
+  final Function toggleView;
 
   SignIn({required this.toggleView});
 
@@ -38,7 +38,7 @@ class _SignIn extends State<SignIn>{
           await HelperFunctions.saveUserLoggedIn(true);
           await HelperFunctions.saveUserEmail(email);
           await HelperFunctions.saveUserName(
-              userInfoSnapshot!.docs[0].data()['FullName']
+              userInfoSnapshot!.docs[0].data()['fullName']
           );
           print("SignedIn");
           await HelperFunctions.getUserLoggedIn().then((value){

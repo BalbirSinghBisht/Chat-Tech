@@ -31,7 +31,7 @@ class _Search extends State<SearchPage>{
     await HelperFunctions.getUserName().then((value) {
       _userName = value!;
     });
-    _user = FirebaseAuth.instance.currentUser!;
+    _user = await FirebaseAuth.instance.currentUser!; // ignore: await_only_futures
   }
 
   _initiateSearch() async{
@@ -41,7 +41,7 @@ class _Search extends State<SearchPage>{
       });
       await DatabaseService().searchByName(searchEditingController.text).then((snapshot){
         searchResultSnapshot = snapshot;
-        print("$searchResultSnapshot");
+        //print("$searchResultSnapshot");
         setState(() {
           isLoading = false;
           hasUserSearched = true;
@@ -78,6 +78,7 @@ class _Search extends State<SearchPage>{
       },
     ):Container();
   }
+
   Widget groupTile(String userName,String groupId,String groupName,String admin){
     _joinValueInGroup(userName, groupId, groupName, admin);
     return ListTile(
