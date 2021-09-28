@@ -25,8 +25,8 @@ class DatabaseService{
       'admin': username,
       'members': [],
       'groupId': '',
-      'recentMsg': '',
-      'recentMsgSender': ''
+      'recentMessage': '',
+      'recentMessageSender': ''
     });
     await groupDocRef.update({
       'members': FieldValue.arrayUnion([uid! + '_' +username]),
