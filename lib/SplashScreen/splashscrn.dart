@@ -3,7 +3,7 @@ import 'package:chattech/Pages/authenticatePage.dart';
 import 'package:chattech/helper/helper_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:splashscreen/splashscreen.dart';
+import 'package:splashscreen/splashscreen.dart';// ignore: import_of_legacy_library_into_null_safe
 class Splash extends StatefulWidget{
   @override
   _Splash createState() => _Splash();

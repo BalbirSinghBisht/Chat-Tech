@@ -15,21 +15,6 @@ class MyApp extends StatefulWidget{
 }
 
 class _MyApp extends State<MyApp> {
-  /*bool _isLoggedIn = false;
-  @override
-  void initState(){
-    super.initState();
-    _getUserLoggedInStatus();
-  }
-  _getUserLoggedInStatus() async{
-    await HelperFunctions.getUserLoggedIn().then((value) {
-      if(value !=null){
-        setState(() {
-          _isLoggedIn = value;
-        });
-      }
-    });
-  }*/
 
   @override
   Widget build(BuildContext context) {

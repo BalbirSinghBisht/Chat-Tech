@@ -7,7 +7,7 @@ class AuthService{
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Users? _userFromFirebaseUser(User user){
-    return (user !=null) ? Users(uid: user.uid): null;
+    return (user != null) ? Users(uid: user.uid): null; // ignore: unnecessary_null_comparison
   }
 
   Future signInwithEmail(String email, String password) async{
