@@ -35,7 +35,7 @@ class MessageTile extends StatelessWidget{
               topRight: Radius.circular(23),
               bottomRight: Radius.circular(23)
           ),
-          color: sentByMe ? Colors.deepOrangeAccent.shade100 : Colors.grey.shade700
+          color: sentByMe ? Colors.deepOrangeAccent.shade100 : Colors.tealAccent.shade700
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

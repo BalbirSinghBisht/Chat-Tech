@@ -72,6 +72,11 @@ class _ChatPage extends State<ChatPage>{
         elevation: 0.0,
       ),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/bg.jpg"),fit: BoxFit.fill
+          ),
+        ),
         child: Stack(
           children: <Widget>[
             _chatMessages(),
