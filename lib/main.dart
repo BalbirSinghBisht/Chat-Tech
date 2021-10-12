@@ -1,3 +1,4 @@
+//@dart=2.9
 import 'package:chattech/SplashScreen/splashscrn.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
