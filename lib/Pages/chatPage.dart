@@ -27,6 +27,7 @@ class _ChatPage extends State<ChatPage>{
       builder: (context,AsyncSnapshot<dynamic> snapshot){
         return snapshot.hasData ? ListView.builder(
           itemCount: snapshot.data.docs.length,
+          scrollDirection: Axis.vertical,
           itemBuilder: (context,index){
             return MessageTile(
                 message: snapshot.data.docs[index].data()['message'],
