@@ -2,6 +2,7 @@ import 'package:chattech/Services/database_service.dart';
 import 'package:chattech/widgets/message_Tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class ChatPage extends StatefulWidget{
   late final String groupId;
@@ -88,50 +89,50 @@ class _ChatPage extends State<ChatPage>{
                   padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                   margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    shape: BoxShape.rectangle,
-                    color: Colors.grey
+                      borderRadius: BorderRadius.circular(50),
+                      shape: BoxShape.rectangle,
+                      color: Colors.grey
                   ),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                        child: TextField(
-                          controller: messageEditingController,
-                          style: TextStyle(
-                            color: Colors.white
-                          ),
-                          decoration: InputDecoration(
-                            hintText: "Send a message...",
-                            hintStyle: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                          child: TextField(
+                            controller: messageEditingController,
+                            style: TextStyle(
+                                color: Colors.white
                             ),
-                            border: InputBorder.none
-                          ),
-                        )
-                    ),
-                    SizedBox(width: 13.0,),
-                    GestureDetector(
-                      onTap: (){
-                        _sendMessage();
-                      },
-                      child: Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.deepOrangeAccent[100],
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.send,
-                            color: Colors.white,
-                          ),
-                        ),
+                            decoration: InputDecoration(
+                                hintText: "Send a message...",
+                                hintStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17
+                                ),
+                                border: InputBorder.none
+                            ),
+                          )
                       ),
-                    )
-                  ],
-                )
+                      SizedBox(width: 13.0,),
+                      GestureDetector(
+                        onTap: (){
+                          _sendMessage();
+                        },
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.deepOrangeAccent[100],
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Center(
+                            child: Icon(
+                              Icons.send,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  )
               ),
             )
           ],
