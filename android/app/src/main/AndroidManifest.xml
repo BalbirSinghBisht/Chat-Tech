@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
-        android:label="Chat-Tech"
+        android:label="Chat_Tech"
         android:icon="@mipmap/logo1"
         android:name="io.flutter.app.FlutterApplication"
         android:usesCleartextTraffic="true"

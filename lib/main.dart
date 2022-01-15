@@ -20,7 +20,7 @@ class _MyApp extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Chat-Tech",
+      title: "Chat_Tech",
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
