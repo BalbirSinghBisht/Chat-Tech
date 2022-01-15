@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1089067843114",
+    "project_id": "chattech-267d1",
+    "storage_bucket": "chattech-267d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089067843114:android:83fcb659e7df45b9160d53",
+        "android_client_info": {
+          "package_name": "com.example.chat_tech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089067843114-n544sl9geualsdm2ds48ff2sop9l78qg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chat_tech",
+            "certificate_hash": "5a6bbd9cd764120d95d6e9087eca711194fc996d"
+          }
+        },
+        {
+          "client_id": "1089067843114-mrrp2va1uis0uj40j7odupd7ksmifoth.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI0MMe-_SGKablMCtevU0RLZA3AF2RouE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089067843114-mrrp2va1uis0uj40j7odupd7ksmifoth.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
