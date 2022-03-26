@@ -5,21 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class ChatPage extends StatefulWidget{
-  late final String groupId;
-  late final String userName;
-  late final String groupName;
+   final String groupId;
+   final String userName;
+   final String groupName;
 
   ChatPage({
-    required this.groupId,
-    required this.userName,
-    required this.groupName
+     this.groupId,
+     this.userName,
+     this.groupName
   });
   @override
   _ChatPage createState() => _ChatPage();
 }
 
 class _ChatPage extends State<ChatPage>{
-  Stream<QuerySnapshot>? _chats;
+  Stream<QuerySnapshot> _chats;
   TextEditingController messageEditingController = new TextEditingController();
 
   Widget _chatMessages() {

@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 class SignIn extends StatefulWidget{
   final Function toggleView;
 
-  SignIn({required this.toggleView});
+  SignIn({this.toggleView});
 
   @override
   _SignIn createState() => _SignIn();
@@ -28,17 +28,17 @@ class _SignIn extends State<SignIn>{
   String error='';
 
   _onSignIn() async {
-    if(_formkey.currentState!.validate()){
+    if(_formkey.currentState.validate()){
       setState(() {
         _isLoading = true;
       });
       await _auth.signInwithEmail(email, password).then((result) async{
         if(result != null){
-          QuerySnapshot<Map<String,dynamic>>? userInfoSnapshot = await DatabaseService().getUserData(email);
+          QuerySnapshot userInfoSnapshot = await DatabaseService().getUserData(email);
           await HelperFunctions.saveUserLoggedIn(true);
           await HelperFunctions.saveUserEmail(email);
           await HelperFunctions.saveUserName(
-              userInfoSnapshot!.docs[0].data()['fullName']
+              userInfoSnapshot.documents[0].data['fullName']
           );
           print("SignedIn");
           await HelperFunctions.getUserLoggedIn().then((value){
@@ -92,7 +92,7 @@ class _SignIn extends State<SignIn>{
                     ),
                     validator: (val){
                       return RegExp(r"^[a-zA-Z0_9,a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").
-                      hasMatch(val!) ? null:"Please Enter Valid Email";
+                      hasMatch(val) ? null:"Please Enter Valid Email";
                     },
                     onChanged: (val){
                       setState(() {
@@ -107,7 +107,7 @@ class _SignIn extends State<SignIn>{
                       labelStyle: TextStyle(color: Colors.black54),
                       prefixIcon: Icon(Icons.lock),
                     ),
-                    validator: (val) => val!.length < 8 ? 'Password Not Strong Enough':null,
+                    validator: (val) => val.length < 8 ? 'Password Not Strong Enough':null,
                     obscureText: true,
                     onChanged: (val){
                       setState(() {

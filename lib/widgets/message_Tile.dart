@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MessageTile extends StatelessWidget{
-  late final String message;
-  late final String sender;
-  late final bool sentByMe;
+   final String message;
+   final String sender;
+   final bool sentByMe;
 
   MessageTile({
-    required this.message,
-    required this.sender,
-    required this.sentByMe
+     this.message,
+     this.sender,
+     this.sentByMe
   });
 
   @override

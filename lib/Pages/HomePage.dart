@@ -16,11 +16,11 @@ class HomePage extends StatefulWidget{
 
 class _HomeState extends State<HomePage>{
   final AuthService _auth = AuthService();
-  late User _user;
-  late String _groupName;
+  FirebaseUser _user;
+  String _groupName;
   String _userName = '';
   String _email = '';
-  Stream<dynamic>? _groups;
+  Stream<dynamic> _groups;
 
   @override
   void initState(){
@@ -93,10 +93,10 @@ class _HomeState extends State<HomePage>{
   }
 
   _getUserAuthAndJoinedGroups() async{
-    _user = FirebaseAuth.instance.currentUser!;
+    _user = await FirebaseAuth.instance.currentUser();
     await HelperFunctions.getUserName().then((value) {
       setState(() {
-        _userName = value!;
+        _userName = value;
       });
     });
     DatabaseService(uid: _user.uid).getUserGroups().then((snapshots){
@@ -106,7 +106,7 @@ class _HomeState extends State<HomePage>{
     });
     await HelperFunctions.getUserEmail().then((value) {
       setState(() {
-        _email = value!;
+        _email = value;
       });
     });
   }
@@ -137,7 +137,7 @@ class _HomeState extends State<HomePage>{
       onPressed: () async{
         if(_groupName != null){ // ignore: unnecessary_null_comparison
           await HelperFunctions.getUserName().then((val) {
-            DatabaseService(uid: _user.uid).createGroup(val!, _groupName);
+            DatabaseService(uid: _user.uid).createGroup(val, _groupName);
           });
           Navigator.of(context).pop();
         }

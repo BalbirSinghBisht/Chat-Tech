@@ -13,12 +13,12 @@ class SearchPage extends StatefulWidget{
 
 class _Search extends State<SearchPage>{
   TextEditingController searchEditingController = new TextEditingController();
-  QuerySnapshot<Map<String,dynamic>>? searchResultSnapshot;
+  QuerySnapshot searchResultSnapshot;
   bool isLoading = false;
   bool hasUserSearched = false;
   bool _isJoined = false;
   String _userName = '';
-  late User _user;
+  FirebaseUser _user;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
@@ -29,9 +29,9 @@ class _Search extends State<SearchPage>{
 
   _getCurrentUserNameAndUid() async{
     await HelperFunctions.getUserName().then((value) {
-      _userName = value!;
+      _userName = value;
     });
-    _user = await FirebaseAuth.instance.currentUser!; // ignore: await_only_futures
+    _user = await FirebaseAuth.instance.currentUser(); // ignore: await_only_futures
   }
 
   _initiateSearch() async{
@@ -67,13 +67,13 @@ class _Search extends State<SearchPage>{
   Widget groupList(){
     return hasUserSearched ? ListView.builder(
       shrinkWrap: true,
-      itemCount: searchResultSnapshot!.docs.length,
+      itemCount: searchResultSnapshot.documents.length,
       itemBuilder: (context,index){
         return groupTile(
           _userName,
-          searchResultSnapshot!.docs[index].data()["groupId"],
-          searchResultSnapshot!.docs[index].data()["groupName"],
-          searchResultSnapshot!.docs[index].data()["admin"],
+          searchResultSnapshot.documents[index].data["groupId"],
+          searchResultSnapshot.documents[index].data["groupName"],
+          searchResultSnapshot.documents[index].data["admin"],
         );
       },
     ):Container();

@@ -3,14 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GroupTile extends StatelessWidget{
-  late final String userName;
-  late final String groupId;
-  late final String groupName;
+   final String userName;
+   final String groupId;
+   final String groupName;
 
   GroupTile({
-    required this.userName,
-    required this.groupId,
-    required this.groupName
+     this.userName,
+     this.groupId,
+     this.groupName
   });
 
   @override

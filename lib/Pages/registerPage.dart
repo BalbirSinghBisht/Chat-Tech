@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget{
   final Function toggleView;
-  RegisterPage({required this.toggleView});
+  RegisterPage({this.toggleView});
 
   @override
   _Register createState() => _Register();
@@ -25,7 +25,7 @@ class _Register extends State<RegisterPage> {
   String error = '';
 
   _onRegister() async{
-    if(_formKey.currentState!.validate()){
+    if(_formKey.currentState.validate()){
       setState(() {
         _isLoading = true;
       });
@@ -105,7 +105,7 @@ class _Register extends State<RegisterPage> {
                     ),
                     validator: (val){
                       return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                          .hasMatch(val!)? null : "Please Enter a valid Email";
+                          .hasMatch(val)? null : "Please Enter a valid Email";
                     },
                     onChanged: (val){
                       setState(() {
@@ -121,7 +121,7 @@ class _Register extends State<RegisterPage> {
                       labelStyle: TextStyle(color: Colors.black54),
                       prefixIcon: Icon(Icons.lock),
                     ),
-                    validator: (val) => val!.length < 8 ? "Password Not Strong Enough" : null,
+                    validator: (val) => val.length < 8 ? "Password Not Strong Enough" : null,
                     obscureText: true,
                     onChanged: (val){
                       setState(() {
